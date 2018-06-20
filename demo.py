@@ -1,4 +1,5 @@
-from gaze.nodes.core import Source, EdgeDetection, Sink
+from gaze.nodes.core import EdgeDetection, Sink
+from gaze.nodes import Source
 
 if __name__ == '__main__':
     x = Source()
