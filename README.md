@@ -9,6 +9,7 @@ Gaze 是实时视频分析框架，它整合私有云的计算能力和物联网
 
 # 系统架构
 
+![image](https://github.com/foamliu/Super-Resolution-Net/raw/master/images/architecture.png)
 
 # 快速开始
 
