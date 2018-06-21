@@ -1,20 +1,12 @@
 from ..engine.base_node import Node
 
 
-class Source(Node):
-    def __init__(self, **kwargs):
-        super(Source, self).__init__(**kwargs)
-
-    def call(self, inputs, **kwargs):
-        return inputs
-
-
 class EdgeDetection(Node):
     def __init__(self, **kwargs):
         super(EdgeDetection, self).__init__(**kwargs)
 
     def call(self, inputs, **kwargs):
-        return inputs
+        return self
 
 
 class Sink(Node):
@@ -22,7 +14,7 @@ class Sink(Node):
         super(Sink, self).__init__(**kwargs)
 
     def call(self, inputs, **kwargs):
-        return inputs
+        return self
 
 
 class AutoVideoSink(Sink):
@@ -30,4 +22,4 @@ class AutoVideoSink(Sink):
         super(AutoVideoSink, self).__init__(**kwargs)
 
     def call(self, inputs, **kwargs):
-        return inputs
+        return self

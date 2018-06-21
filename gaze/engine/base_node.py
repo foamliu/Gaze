@@ -27,13 +27,13 @@ class Node(object):
 
     def __call__(self, inputs, **kwargs):
         print('__call__ inputs: ' + str(inputs))
-        self.add_inbound_node(inputs)
+        self._add_inbound_node(inputs)
         output = self.call(inputs, **kwargs)
         return output
 
     def build(self):
         self.built = True
 
-    def add_inbound_node(self, input_tensors):
+    def _add_inbound_node(self, input_tensors):
         self._inbound_nodes.append(input_tensors)
 
