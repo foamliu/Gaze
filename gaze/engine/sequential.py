@@ -17,6 +17,6 @@ class Sequential(Node):
                             'an instance of class Node. '
                             'Found: ' + str(node))
 
+        self._nodes.append(node)
         for sub_node in node._inbound_nodes:
-            self._nodes.append(sub_node)
             self.add(sub_node)
