@@ -17,6 +17,7 @@ def graph_to_dot(graph,
         if not graph.built:
             graph.build()
     nodes = graph.nodes
+    print('len(nodes): ' + str(len(nodes)))
 
     # Create graph nodes.
     for node in nodes:
