@@ -16,7 +16,7 @@ def graph_to_dot(graph,
     if isinstance(graph, Sequential):
         if not graph.built:
             graph.build()
-    nodes = graph.nodes
+    nodes = graph._nodes
     print('len(nodes): ' + str(len(nodes)))
 
     # Create graph nodes.
