@@ -59,13 +59,10 @@ def graph_to_dot(graph,
     # Connect nodes with edges.
     for node in nodes:
         node_id = str(id(node))
-        for i, node in enumerate(node._inbound_nodes):
-            node_key = node.name + '_ib-' + str(i)
-            if node_key in graph._network_nodes:
-                for inbound_layer in node.inbound_layers:
-                    inbound_layer_id = str(id(inbound_layer))
-                    node_id = str(id(node))
-                    dot.add_edge(pydot.Edge(inbound_layer_id, node_id))
+        for i, inbound_node in enumerate(node._inbound_nodes):
+            inbound_node_id = str(id(inbound_node))
+            node_id = str(id(node))
+            dot.add_edge(pydot.Edge(inbound_node_id, node_id))
     return dot
 
 
