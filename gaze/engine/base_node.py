@@ -29,6 +29,6 @@ class Node(object):
         output = self.call(inputs, **kwargs)
         return output
 
-    def build(self, input_shape):
+    def build(self):
         self.built = True
 
