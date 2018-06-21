@@ -7,7 +7,8 @@ class Sequential(Node):
     def __init__(self, nodes=None, name=None):
         super(Sequential, self).__init__(name=name)
 
-        # Add to the model any layers passed to the constructor.
+        self._nodes = []
+
         if nodes:
             for node in nodes:
                 self.add(node)
@@ -23,3 +24,5 @@ class Sequential(Node):
             raise TypeError('The added node must be '
                             'an instance of class Node. '
                             'Found: ' + str(node))
+
+        self._nodes.append(node)
