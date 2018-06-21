@@ -6,7 +6,7 @@ class SourceNode(Node):
     def __init__(self, name=None):
         if not name:
             prefix = 'source'
-            name = prefix + '_' + str(1234)
+            name = prefix + '_' + str(1)
         super(SourceNode, self).__init__(name=name)
 
 
