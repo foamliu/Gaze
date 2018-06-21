@@ -1,28 +1,22 @@
 from .base_node import Node
-from .source_node import SourceNode
 
 
 class Sequential(Node):
-    # Linear stack of layers.
-    def __init__(self, nodes=None, name=None):
+    def __init__(self, node=None, name=None):
         super(Sequential, self).__init__(name=name)
 
         self._nodes = []
 
-        if nodes:
-            for node in nodes:
-                self.add(node)
-
-    @property
-    def nodes(self):
-        if self._nodes and isinstance(self._nodes[0], SourceNode):
-            return self._nodes[1:]
-        return self._nodes
+        if node:
+            self.add(node)
 
     def add(self, node):
+        print('add node: ' + str(node))
         if not isinstance(node, Node):
             raise TypeError('The added node must be '
                             'an instance of class Node. '
                             'Found: ' + str(node))
 
-        self._nodes.append(node)
+        for sub_node in node._inbound_nodes:
+            self._nodes.append(sub_node)
+            self.add(sub_node)
