@@ -23,3 +23,11 @@ class Sink(Node):
 
     def call(self, inputs, **kwargs):
         return inputs
+
+
+class AutoVideoSink(Sink):
+    def __init__(self, **kwargs):
+        super(AutoVideoSink, self).__init__(**kwargs)
+
+    def call(self, inputs, **kwargs):
+        return inputs

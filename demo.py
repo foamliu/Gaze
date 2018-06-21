@@ -1,11 +1,14 @@
-from gaze.nodes import Source
-from gaze.nodes.core import EdgeDetection, Sink
-from gaze.pipes import Pipe
+from gaze.nodes import VideoTestSource
+from gaze.nodes.core import EdgeDetection, AutoVideoSink
+from gaze.pipes import Graph
+from gaze.utils import plot_graph
 
 if __name__ == '__main__':
-    x = Source()
+    x = VideoTestSource()
     x = EdgeDetection()(x)
-    x = Sink()(x)
+    x = AutoVideoSink()(x)
 
-    pipe = Pipe(x)
-    pipe.run()
+
+
+    graph = Graph(x)
+    graph.run()

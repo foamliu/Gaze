@@ -13,3 +13,8 @@ class SourceNode(Node):
 def Source():
     source_node = SourceNode()
     return source_node
+
+
+def VideoTestSource():
+    source_node = SourceNode()
+    return source_node

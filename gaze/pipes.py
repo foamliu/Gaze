@@ -1,9 +1,9 @@
 from .engine.sequential import Sequential
 
 
-class Pipe(Sequential):
+class Graph(Sequential):
     def __init__(self, name=None):
-        super(Pipe, self).__init__(name=name)
+        super(Graph, self).__init__(name=name)
 
     def run(self):
         pass

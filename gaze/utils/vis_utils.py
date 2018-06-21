@@ -3,23 +3,22 @@ import os
 import pydot
 
 
-def pipe_to_dot(pipe,
-                show_shapes=False,
-                show_node_names=True,
-                rankdir='TB'):
+def graph_to_dot(graph,
+                 show_shapes=False,
+                 show_node_names=True,
+                 rankdir='TB'):
     from ..nodes.wrappers import Wrapper
     from ..pipes import Sequential
 
-    _check_pydot()
     dot = pydot.Dot()
     dot.set('rankdir', rankdir)
     dot.set('concentrate', True)
     dot.set_node_defaults(shape='record')
 
-    if isinstance(pipe, Sequential):
-        if not pipe.built:
-            pipe.build()
-    nodes = pipe.nodes
+    if isinstance(graph, Sequential):
+        if not graph.built:
+            graph.build()
+    nodes = graph.nodes
 
     # Create graph nodes.
     for node in nodes:
@@ -63,7 +62,7 @@ def pipe_to_dot(pipe,
         node_id = str(id(node))
         for i, node in enumerate(node._inbound_nodes):
             node_key = node.name + '_ib-' + str(i)
-            if node_key in model._network_nodes:
+            if node_key in graph._network_nodes:
                 for inbound_layer in node.inbound_layers:
                     inbound_layer_id = str(id(inbound_layer))
                     node_id = str(id(node))
@@ -71,11 +70,11 @@ def pipe_to_dot(pipe,
     return dot
 
 
-def plot_pipe(pipe,
-              to_file='model.png',
-              show_shapes=False,
-              show_node_names=True):
-    dot = pipe_to_dot(pipe, show_shapes, show_node_names)
+def plot_graph(graph,
+               to_file='model.png',
+               show_shapes=False,
+               show_node_names=True):
+    dot = graph_to_dot(graph, show_shapes, show_node_names)
     _, extension = os.path.splitext(to_file)
     if not extension:
         extension = 'png'
