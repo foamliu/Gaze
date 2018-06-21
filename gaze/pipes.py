@@ -1,5 +1,6 @@
 from .engine.base_node import Node
 from .engine.sequential import Sequential
+import cv2 as cv
 
 
 class Graph(Sequential):
@@ -13,8 +14,14 @@ class Graph(Sequential):
 
     def run(self):
         source = self._nodes[0]
-        frame = source.call()
-        print(source)
-        print(frame)
-        for node in reversed(self._nodes[1:]):
-            print(node)
+
+        while True:
+            ret, frame = source.call()
+            if ret:
+                for node in reversed(self._nodes[1:]):
+                    frame = node.call(frame)
+
+                ch = cv.waitKey(1)
+                if ch == 27:
+                    break
+

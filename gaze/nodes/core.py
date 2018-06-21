@@ -1,4 +1,5 @@
 from ..engine.base_node import Node
+import cv2 as cv
 
 
 class EdgeDetection(Node):
@@ -6,7 +7,8 @@ class EdgeDetection(Node):
         super(EdgeDetection, self).__init__(**kwargs)
 
     def call(self, inputs, **kwargs):
-        return self
+        laplacian = cv.Laplacian(inputs, cv.CV_8U)
+        return laplacian
 
 
 class Sink(Node):
@@ -22,4 +24,5 @@ class AutoVideoSink(Sink):
         super(AutoVideoSink, self).__init__(**kwargs)
 
     def call(self, inputs, **kwargs):
-        return self
+        cv.imshow('AutoVideoSink', inputs)
+        return None

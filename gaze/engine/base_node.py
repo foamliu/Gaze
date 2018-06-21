@@ -26,11 +26,10 @@ class Node(object):
     def call(self, inputs, **kwargs):
         return inputs
 
-    def __call__(self, inputs, **kwargs):
+    def __call__(self, node, inputs=None, **kwargs):
         # print('__call__ inputs: ' + str(inputs))
-        self._add_inbound_node(inputs)
-        output = self.call(inputs, **kwargs)
-        return output
+        self._add_inbound_node(node)
+        return self
 
     def build(self):
         self.built = True

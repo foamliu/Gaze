@@ -20,5 +20,4 @@ class VideoTestSource(SourceNode):
         self._cap = cv.VideoCapture('videotestsrc ! appsink sync=false ', cv.CAP_GSTREAMER)
 
     def call(self, inputs=None, **kwargs):
-        ret, frame = self._cap.read()
-        return frame
+        return self._cap.read()
