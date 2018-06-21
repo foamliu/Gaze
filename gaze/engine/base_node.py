@@ -27,7 +27,7 @@ class Node(object):
         return inputs
 
     def __call__(self, inputs, **kwargs):
-        print('__call__ inputs: ' + str(inputs))
+        # print('__call__ inputs: ' + str(inputs))
         self._add_inbound_node(inputs)
         output = self.call(inputs, **kwargs)
         return output

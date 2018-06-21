@@ -9,6 +9,12 @@ class Graph(Sequential):
                             'an instance of class Node. '
                             'Found: ' + str(node))
         super(Graph, self).__init__(node=node, name=name)
+        self._output = node
 
     def run(self):
-        pass
+        source = self._nodes[0]
+        frame = source.call()
+        print(source)
+        print(frame)
+        for node in reversed(self._nodes[1:]):
+            print(node)

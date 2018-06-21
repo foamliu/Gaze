@@ -10,8 +10,10 @@ class Sequential(Node):
         if node:
             self.add(node)
 
+        self._nodes.reverse()
+
     def add(self, node):
-        print('add node: ' + str(node))
+        # print('add node: ' + str(node))
         if not isinstance(node, Node):
             raise TypeError('The added node must be '
                             'an instance of class Node. '

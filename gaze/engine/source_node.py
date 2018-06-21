@@ -1,4 +1,5 @@
 from .base_node import Node
+import cv2 as cv
 
 
 class SourceNode(Node):
@@ -9,12 +10,15 @@ class SourceNode(Node):
             name = prefix + '_' + str(1)
         super(SourceNode, self).__init__(name=name)
 
-
-def Source():
-    source_node = SourceNode()
-    return source_node
+    def call(self, inputs=None, **kwargs):
+        return None
 
 
-def VideoTestSource():
-    source_node = SourceNode()
-    return source_node
+class VideoTestSource(SourceNode):
+    def __init__(self, name=None):
+        super(VideoTestSource, self).__init__(name=name)
+        self._cap = cv.VideoCapture('videotestsrc ! appsink sync=false ', cv.CAP_GSTREAMER)
+
+    def call(self, inputs=None, **kwargs):
+        ret, frame = self._cap.read()
+        return frame
