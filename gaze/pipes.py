@@ -18,7 +18,7 @@ class Graph(Sequential):
         while True:
             ret, frame = source.call()
             if ret:
-                for node in reversed(self._nodes[1:]):
+                for node in self._nodes[1:]:
                     frame = node.call(frame)
 
                 ch = cv.waitKey(1)
