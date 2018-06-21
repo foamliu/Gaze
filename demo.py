@@ -11,4 +11,4 @@ if __name__ == '__main__':
     graph = Graph(x)
     graph.run()
 
-    plot_graph(graph)
+    plot_graph(graph, to_file='model.svg')
