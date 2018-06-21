@@ -8,7 +8,7 @@ if __name__ == '__main__':
     x = EdgeDetection()(x)
     x = AutoVideoSink()(x)
 
-
-
     graph = Graph(x)
     graph.run()
+
+    plot_graph(graph)
