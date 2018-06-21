@@ -5,13 +5,11 @@ import pydot
 
 def graph_to_dot(graph,
                  show_shapes=False,
-                 show_node_names=True,
-                 rankdir='TB'):
+                 show_node_names=True):
     from ..nodes.wrappers import Wrapper
     from ..pipes import Sequential
 
     dot = pydot.Dot()
-    dot.set('rankdir', rankdir)
     dot.set('concentrate', True)
     dot.set_node_defaults(shape='record')
 
