@@ -7,7 +7,8 @@ class EdgeDetection(Node):
         super(EdgeDetection, self).__init__(**kwargs)
 
     def call(self, inputs, **kwargs):
-        laplacian = cv.Laplacian(inputs, cv.CV_8U)
+        gray = cv.cvtColor(inputs, cv.COLOR_BGR2GRAY)
+        laplacian = cv.Laplacian(gray, cv.CV_8U)
         return laplacian
 
 
