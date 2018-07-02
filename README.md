@@ -9,7 +9,11 @@ Gaze 实时视频分析服务平台整合私有云的计算能力和物联网设
 
 # 系统架构
 
-![image](https://github.com/foamliu/Gaze/raw/master/images/architecture.png)
+![image](https://github.com/foamliu/Gaze/raw/master/images/architecture.svg)
+
+# 数据流图
+
+![image](https://github.com/foamliu/Gaze/raw/master/images/dataflow.svg)
 
 # 快速上手
 
