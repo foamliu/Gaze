@@ -26,7 +26,7 @@ class VideoTestSource(SourceNode):
 class NetworkSource(SourceNode):
     def __init__(self, name=None):
         super(NetworkSource, self).__init__(name=name)
-        self._cap = cv.VideoCapture('udpsrc port=5000 ! application/x-rtp, payload=96 ! rtpjitterbuffer ! rtph264depay ! avdec_h264 ! appsink sync=false ', cv.CAP_GSTREAMER)
+        self._cap = cv.VideoCapture('udpsrc port=5000 ! application/x-rtp, payload=96 ! rtpjitterbuffer ! rtph264depay ! avdec_h264  ! videoconvert  ! queue ! appsink sync=false ', cv.CAP_GSTREAMER)
 
     def call(self, inputs=None, **kwargs):
         return self._cap.read()
