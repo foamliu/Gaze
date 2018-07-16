@@ -3,7 +3,7 @@ from gaze.nodes.core import EdgeDetection, AutoVideoSink
 from gaze.pipes import Graph
 
 if __name__ == '__main__':
-    x = FileSource('movie.mp4')
+    x = FileSource('~/code/Gaze/movie.mp4')
     x = EdgeDetection()(x)
     x = AutoVideoSink()(x)
 
