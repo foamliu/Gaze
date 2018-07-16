@@ -1,2 +1,2 @@
 from .source_node import SourceNode
-from .source_node import VideoTestSource
+from .source_node import VideoTestSource, NetworkSource
