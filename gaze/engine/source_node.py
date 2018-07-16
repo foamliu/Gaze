@@ -35,7 +35,7 @@ class NetworkSource(SourceNode):
 class FileSource(SourceNode):
     def __init__(self, location):
         super(FileSource, self).__init__()
-        command = 'gst-launch-1.0 filesrc location={} ! decodebin ! videoconvert ! queue ! appsink sync=false '.format(location)
+        command = 'filesrc location={} ! decodebin ! videoconvert ! queue ! appsink sync=false '.format(location)
         print(command)
         self._cap = cv.VideoCapture(command, cv.CAP_GSTREAMER)
 
