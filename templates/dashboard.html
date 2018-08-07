@@ -15,6 +15,8 @@
   <link rel="stylesheet" href="../static/dist/css/AdminLTE.min.css">
   <!-- AdminLTE Skins. -->
   <link rel="stylesheet" href="../static/dist/css/skins/skin-blue.min.css">
+  <!-- DataTables -->
+  <link rel="stylesheet" href="../static/bower_components/datatables.net-bs/css/dataTables.bootstrap.min.css">
 
   <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
   <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -120,8 +122,8 @@
       <ul class="sidebar-menu" data-widget="tree">
         <li class="header">Main</li>
         <!-- Optionally, you can add icons to the links -->
-        <li><a href="/dashboard"><i class="fa fa-link"></i> <span>Dashboard</span></a></li>
-        <li class="active"><a href="/upload"><i class="fa fa-link"></i> <span>Upload</span></a></li>
+        <li class="active"><a href="/dashboard"><i class="fa fa-link"></i> <span>Dashboard</span></a></li>
+        <li><a href="/upload"><i class="fa fa-link"></i> <span>Upload</span></a></li>
       </ul>
       <!-- /.sidebar-menu -->
     </section>
@@ -137,49 +139,58 @@
       </h1>
       <ol class="breadcrumb">
         <li><a href="#"><i class="fa fa-dashboard"></i> Main</a></li>
-        <li class="active">Upload</li>
+        <li class="active">Dashboard</li>
       </ol>
     </section>
 
     <!-- Main content -->
     <section class="content">
-        <div class="row">
-            <div class="col-lg-6 col-md-9">
-                <!-- general form elements -->
-                <div class="box box-primary">
-                    <div class="box-header with-border">
-                        <h3 class="box-title">Package info</h3>
-                    </div>
-                    <!-- /.box-header -->
-                    <!-- form start -->
-                    <form class="form" action="/upload/submit" method="post" enctype=multipart/form-data>
-                        <div class="box-body">
-                            <div class="form-group">
-                                <label for="packageName">Package name</label>
-                                <input type="text" class="form-control" id="packageName" name="name" placeholder="Enter your package name.">
-                            </div>
-                            <div class="form-group">
-                                <label for="description">Description</label>
-                                <input type="text" class="form-control" id="description" name="description" placeholder="Describe your package.">
-                            </div>
-                            <div class="form-group">
-                                <label for="packageInput">Package input</label>
-                                <input type="file" id="packageInput" name="file" accpet="*.gz">
-                                <p class="help-block">Choose your package here.</p>
-                                <p class="help-block">Notice that package's extension should be *.gz</p>
-                            </div>
-                        </div>
-                        <!-- /.box-body -->
-                        <div class="box-footer">
-						  <button type="reset" class="btn btn-default">Reset</button>
-						  <button type="submit" class="btn btn-primary pull-right">Submit</button>
-					  </div>
-                    </form>
-                </div>
-                <!-- /.box -->
-            </div>
-        </div>
+        <!-- Show accounts -->
+		 <div class="row">
+		  <div class="col-lg-10">
+			  <div class="box box-solid box-danger">
+				<div class="box-header with-border">
+				  <h3 class="box-title">All packages</h3>
+				</div>
+				<!-- /.box-header -->
+				<div class="box-body">
+				  <table id="account_table" class="table table-bordered table-striped">
+					<thead>
+					<tr>
+					  <th>User name</th>
+					  <th>Package name</th>
+					  <th>Description</th>
+					  <th>Upload time</th>
+					</tr>
+					</thead>
 
+					<tbody>
+
+					{%for package in package_list%}
+                    <tr>
+						{%for item in package%}
+						<td>{{item}}</td>
+						{%endfor%}
+                    </tr>
+                    {%endfor%}
+
+					</tbody>
+
+					<tfoot>
+					<tr>
+					  <th>User name</th>
+					  <th>Package name</th>
+					  <th>Description</th>
+					  <th>Upload time</th>
+					</tr>
+					</tfoot>
+				  </table>
+				</div>
+				<!-- /.box-body -->
+			  </div>
+			  <!-- /.box -->
+		  </div>
+		 </div>
     </section>
 
     <!-- /.content -->
@@ -206,7 +217,15 @@
 <script src="../static/bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
 <!-- AdminLTE App -->
 <script src="../static/dist/js/adminlte.min.js"></script>
+<!-- DataTables -->
+<script src="../static/bower_components/datatables.net/js/jquery.dataTables.min.js"></script>
+<script src="../static/bower_components/datatables.net-bs/js/dataTables.bootstrap.min.js"></script>
 
+<script>
+$(function () {
+    $('#account_table').DataTable()
+  })
+</script>
 <!-- Optionally, you can add Slimscroll and FastClick plugins.
      Both of these plugins are recommended to enhance the
      user experience. -->
