@@ -21,4 +21,4 @@ configure_uploads(app, packages)
 # import router view
 from router import *
 if __name__ == '__main__':
-    app.run(port=5001, threaded=True, debug=True, host=('127.0.0.1'))
+    app.run(port=5001, threaded=True, debug=True, host=('0.0.0.0'))
