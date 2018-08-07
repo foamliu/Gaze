@@ -161,6 +161,7 @@
 					  <th>Package name</th>
 					  <th>Description</th>
 					  <th>Upload time</th>
+                      <th>Operation</th>
 					</tr>
 					</thead>
 
@@ -171,6 +172,11 @@
 						{%for item in package%}
 						<td>{{item}}</td>
 						{%endfor%}
+                        <td>
+                            <a href="/dashboard/deploy/{{ package[1] }}">Deploy</a>
+                            &nbsp &nbsp &nbsp
+                            <a href="/dashboard/delete/{{ package[1] }}">Delete</a>
+                        </td>
                     </tr>
                     {%endfor%}
 
@@ -182,6 +188,7 @@
 					  <th>Package name</th>
 					  <th>Description</th>
 					  <th>Upload time</th>
+                      <th>Operation</th>
 					</tr>
 					</tfoot>
 				  </table>
