@@ -1,0 +1,13 @@
+Metadata-Version: 1.1
+Name: gaze
+Version: 0.0.1
+Summary: Gaze integrates the computing power of private clouds with data from IoT devices such as cameras, providing scalable video analytics capacity on the Edge
+Home-page: https://github.com/foamliu/Gaze
+Author: Peisheng Wang
+Author-email: t-peiwa@microsoft.com
+License: UNKNOWN
+Description: UNKNOWN
+Platform: UNKNOWN
+Classifier: Programming Language :: Python :: 3
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: OS Independent

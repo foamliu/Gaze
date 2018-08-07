@@ -1,6 +1,8 @@
 from app import app, packages
 from flask import render_template, request, redirect, url_for, abort
-from database import insert_package, query_packages
+from database import insert_package, query_packages, delete_package
+from os import remove
+from settings import UPLOAD_FOLDER
 
 logger = app.logger
 
@@ -38,3 +40,16 @@ def show_dashboard():
         package_info = [package["user_name"], package["package_name"], package["description"], "2018-8-7"]
         all_package_info.append(package_info)
     return render_template('dashboard.html', package_list=all_package_info)
+
+
+@app.route('/dashboard/deploy/<package_name>', methods=['GET', 'POST'])
+def dashboard_deploy(package_name):
+    print("deploy the package: " + UPLOAD_FOLDER + "/" + package_name + '.gz')
+    return redirect(url_for('show_dashboard'))
+
+
+@app.route('/dashboard/delete/<package_name>', methods=['GET', 'POST'])
+def dashboard_delete(package_name):
+    remove(UPLOAD_FOLDER + "/" + package_name + '.gz')
+    delete_package(package_name)
+    return redirect(url_for('show_dashboard'))
