@@ -12,4 +12,4 @@ COPY temp/pkg.zip /usr/src/gaze
 CMD [ "unzip", "pkg.zip" ]
 WORKDIR /usr/src/gaze/pkg
 
-CMD [ "python3", "./app.py" ]
+CMD [ "python3", "app.py" ]

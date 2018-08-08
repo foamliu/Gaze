@@ -51,7 +51,7 @@ def dashboard_deploy(package_name):
     print("deploy the package: " + package_dir)
     copy(package_dir, CURRENT_FOLDER + "/temp/pkg.zip")
     client = docker.from_env()
-    result = client.images.build(path=CURRENT_FOLDER)
+    result = client.images.build(path=CURRENT_FOLDER, tag="gaze:0.0.1")
     print(result)
     return redirect(url_for('show_dashboard'))
 
