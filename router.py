@@ -54,7 +54,7 @@ def dashboard_deploy(package_name):
     result = client.images.build(path=CURRENT_FOLDER, tag=package_name)
     print("Deploy successful!")
     print(result)
-    print(result[0].id)
+    print("Docker image ID: "result[0].id)
     return redirect(url_for('show_dashboard'))
 
 

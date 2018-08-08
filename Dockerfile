@@ -4,12 +4,8 @@ RUN apt-get update -y
 RUN apt-get -y install python3-pip
 RUN pip3 install gaze
 RUN apt-get install unzip
-
 RUN mkdir -p /usr/src/gaze
-WORKDIR /usr/src/gaze
-
 COPY temp/pkg.zip /usr/src/gaze
+WORKDIR /usr/src/gaze
 CMD [ "unzip", "pkg.zip" ]
-WORKDIR /usr/src/gaze/pkg
-
 CMD [ "python3", "app.py" ]
