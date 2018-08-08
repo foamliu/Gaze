@@ -1,5 +1,5 @@
 from flask import Flask
-from flask_uploads import UploadSet, ARCHIVES, configure_uploads
+from flask_uploads import UploadSet, ALL, configure_uploads
 from settings import *
 from datetime import timedelta
 
@@ -11,10 +11,9 @@ app = Flask(__name__)
 
 # configure upload set
 app.config['UPLOADED_PACKAGE_DEST'] = UPLOAD_FOLDER
-app.config['UPLOADED_PACKAGE_ALLOW'] = ARCHIVES
 app.config['SEND_FILE_MAX_AGE_DEFAULT'] = timedelta(seconds=1)
 
-packages = UploadSet('PACKAGE')
+packages = UploadSet('PACKAGE', extensions="gaz")
 configure_uploads(app, packages)
 
 

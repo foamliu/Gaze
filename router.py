@@ -1,8 +1,10 @@
 from app import app, packages
-from flask import render_template, request, redirect, url_for, abort
-from database import insert_package, query_packages, delete_package
+from flask import render_template, request, redirect, url_for
+from database import insert_package, query_packages, delete_package, insert_deploy
 from os import remove
-from settings import UPLOAD_FOLDER
+from shutil import copy
+from settings import UPLOAD_FOLDER, CURRENT_FOLDER
+import docker
 
 logger = app.logger
 
@@ -23,7 +25,7 @@ def upload_package():
         package_file = request.files['file']
         package_name = request.form['name']
         description = request.form['description']
-        package_true_name = packages.save(package_file, name=package_name+'.gz')
+        package_true_name = packages.save(package_file, name=package_name+'.gaz')
         print(package_true_name)
         insert_package(user_name="admin", package_name=package_name, description=description)
         return redirect(url_for('show_upload'))
@@ -44,12 +46,20 @@ def show_dashboard():
 
 @app.route('/dashboard/deploy/<package_name>', methods=['GET', 'POST'])
 def dashboard_deploy(package_name):
-    print("deploy the package: " + UPLOAD_FOLDER + "/" + package_name + '.gz')
+    insert_deploy(user_name="admin", package_name=package_name)
+    package_dir = UPLOAD_FOLDER + "/" + package_name + '.gaz'
+    print("Deploy the package: " + package_dir)
+    copy(package_dir, CURRENT_FOLDER + "/temp/pkg.zip")
+    client = docker.from_env()
+    result = client.images.build(path=CURRENT_FOLDER, tag=package_name)
+    print("Deploy successful!")
+    print(result)
+    print("Docker image ID: "result[0].id)
     return redirect(url_for('show_dashboard'))
 
 
 @app.route('/dashboard/delete/<package_name>', methods=['GET', 'POST'])
 def dashboard_delete(package_name):
-    remove(UPLOAD_FOLDER + "/" + package_name + '.gz')
     delete_package(package_name)
+    remove(UPLOAD_FOLDER + "/" + package_name + '.gaz')
     return redirect(url_for('show_dashboard'))
