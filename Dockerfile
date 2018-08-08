@@ -7,5 +7,5 @@ RUN apt-get install unzip
 RUN mkdir -p /usr/src/gaze
 COPY temp/pkg.zip /usr/src/gaze
 WORKDIR /usr/src/gaze
-CMD [ "unzip", "pkg.zip" ]
+RUN unzip pkg.zip
 CMD [ "python3", "app.py" ]
