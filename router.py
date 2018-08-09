@@ -56,8 +56,8 @@ def dashboard_deploy(package_name):
     print("Docker image ID: " + result[0].id)
     print("Running the container ...")
     container = client.containers.run(package_name, detach=True)
-    print(container)
-    print(container.logs)
+    print("Container ID: " + container.id)
+    print(container.image, container.labels, container.name, container.short_id, container.status)
     return redirect(url_for('show_dashboard'))
 
 
