@@ -57,7 +57,7 @@ def dashboard_deploy(package_name):
 
     print("Start pushing your docker image to docker hub")
     client.login(username='gazetest', password='gazetest')
-    client.images.push("gazetest/" + package_name, tag=result[0].short_id)
+    client.images.push("gazetest/" + package_name)
 
     # print("Running the container ...")
     # container = client.containers.run(package_name, detach=True)
