@@ -2,3 +2,4 @@ flask
 flask_uploads
 pymongo
 docker
+kubernetes
