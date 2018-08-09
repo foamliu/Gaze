@@ -51,13 +51,19 @@ def dashboard_deploy(package_name):
     print("Deploying the package: " + package_dir)
     copy(package_dir, CURRENT_FOLDER + "/temp/pkg.zip")
     client = docker.from_env()
-    result = client.images.build(path=CURRENT_FOLDER, tag=package_name)
+    result = client.images.build(path=CURRENT_FOLDER, tag="gazetest/" + package_name)
     print("Deploy successful!")
     print("Docker image ID: " + result[0].id)
-    print("Running the container ...")
-    container = client.containers.run(package_name, detach=True)
-    print("Container ID: " + container.id)
-    print(container.image, container.labels, container.name, container.short_id, container.status)
+
+    print("Start pushing your docker image to docker hub")
+    client.login(username='gazetest', password='gazetest')
+    client.images.push("gazetest/" + package_name, tag=result[0].short_id)
+
+    # print("Running the container ...")
+    # container = client.containers.run(package_name, detach=True)
+    # print("Container ID: " + container.short_id)
+    # print("Container Image: " + container.image)
+    # print("Container Status: " + container.status)
     return redirect(url_for('show_dashboard'))
 
 
