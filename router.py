@@ -48,13 +48,16 @@ def show_dashboard():
 def dashboard_deploy(package_name):
     insert_deploy(user_name="admin", package_name=package_name)
     package_dir = UPLOAD_FOLDER + "/" + package_name + '.gaz'
-    print("Deploy the package: " + package_dir)
+    print("Deploying the package: " + package_dir)
     copy(package_dir, CURRENT_FOLDER + "/temp/pkg.zip")
     client = docker.from_env()
     result = client.images.build(path=CURRENT_FOLDER, tag=package_name)
     print("Deploy successful!")
-    print(result)
-    print("Docker image ID: "result[0].id)
+    print("Docker image ID: " + result[0].id)
+    print("Running the container ...")
+    container = client.containers.run(package_name, detach=True)
+    print(container)
+    print(container.logs)
     return redirect(url_for('show_dashboard'))
 
 
