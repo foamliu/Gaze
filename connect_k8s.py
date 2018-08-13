@@ -33,7 +33,7 @@ def create_deployment_object(package_name):
     deployment = client.ExtensionsV1beta1Deployment(
         api_version="extensions/v1beta1",
         kind="Deployment",
-        metadata=client.V1ObjectMeta(name=package_name + "-delpoy"),
+        metadata=client.V1ObjectMeta(name=package_name + "-deploy"),
         spec=spec)
 
     return deployment
