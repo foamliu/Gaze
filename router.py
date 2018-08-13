@@ -5,6 +5,7 @@ from os import remove
 from shutil import copy
 from settings import UPLOAD_FOLDER, CURRENT_FOLDER
 import docker
+from connect_k8s import create_deployment, create_deployment_object, list_all_pods
 
 logger = app.logger
 
@@ -58,6 +59,11 @@ def dashboard_deploy(package_name):
     print("Start pushing your docker image to docker hub")
     client.login(username='gazetest', password='gazetest')
     client.images.push("gazetest/" + package_name)
+
+    print("Start deploying your container on azure stack")
+    deployment = create_deployment_object(package_name)
+    create_deployment(deployment)
+    list_all_pods()
 
     # print("Running the container ...")
     # container = client.containers.run(package_name, detach=True)
