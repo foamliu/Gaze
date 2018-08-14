@@ -1,5 +1,6 @@
-from ..engine.base_node import Node
 import cv2 as cv
+
+from ..engine.base_node import Node
 
 
 class EdgeDetection(Node):
@@ -26,4 +27,16 @@ class AutoVideoSink(Sink):
 
     def call(self, inputs, **kwargs):
         cv.imshow('AutoVideoSink', inputs)
+        return None
+
+
+class FileSink(Sink):
+    def __init__(self, **kwargs):
+        super(FileSink, self).__init__(**kwargs)
+        fourcc = cv.VideoWriter_fourcc(*'MPEG')
+        self.out = cv.VideoWriter('/temp/output.avi', fourcc, 25.0, (640, 360))
+
+    def call(self, inputs, **kwargs):
+        cv.imshow('AutoVideoSink', inputs)
+        self.out.write(inputs)
         return None
