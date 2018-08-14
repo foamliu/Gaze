@@ -1,12 +1,12 @@
 FROM base/archlinux
 MAINTAINER Peisheng Wang <115681033@qq.com>
-RUN pacman -Syu
-RUN pacman -S opencv
-RUN pacman -S gstreamer
-RUN pacman -S python-numpy
-RUN pacman -S python-pip
+RUN pacman -Syu --noconfirm
+RUN pacman -S opencv --noconfirm
+RUN pacman -S gstreamer --noconfirm
+RUN pacman -S python-numpy --noconfirm
+RUN pacman -S python-pip --noconfirm
 RUN pip install gaze
-RUN pacman -S unzip
+RUN pacman -S unzip --noconfirm
 RUN mkdir -p /usr/src/gaze
 COPY temp/pkg.zip /usr/src/gaze
 WORKDIR /usr/src/gaze
