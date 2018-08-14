@@ -5,6 +5,7 @@ from os import remove
 from shutil import copy
 from settings import UPLOAD_FOLDER, CURRENT_FOLDER
 import docker
+from connect_k8s import create_deployment, create_deployment_object, list_all_pods
 
 logger = app.logger
 
@@ -48,13 +49,27 @@ def show_dashboard():
 def dashboard_deploy(package_name):
     insert_deploy(user_name="admin", package_name=package_name)
     package_dir = UPLOAD_FOLDER + "/" + package_name + '.gaz'
-    print("Deploy the package: " + package_dir)
+    print("Deploying the package: " + package_dir)
     copy(package_dir, CURRENT_FOLDER + "/temp/pkg.zip")
     client = docker.from_env()
-    result = client.images.build(path=CURRENT_FOLDER, tag=package_name)
+    result = client.images.build(path=CURRENT_FOLDER, tag="gazetest/" + package_name)
     print("Deploy successful!")
-    print(result)
-    print("Docker image ID: "result[0].id)
+    print("Docker image ID: " + result[0].id)
+
+    print("Start pushing your docker image to docker hub")
+    client.login(username='gazetest', password='gazetest')
+    client.images.push("gazetest/" + package_name)
+
+    print("Start deploying your container on azure stack")
+    deployment = create_deployment_object(package_name)
+    create_deployment(deployment)
+    list_all_pods()
+
+    # print("Running the container ...")
+    # container = client.containers.run(package_name, detach=True)
+    # print("Container ID: " + container.short_id)
+    # print("Container Image: " + container.image)
+    # print("Container Status: " + container.status)
     return redirect(url_for('show_dashboard'))
 
 

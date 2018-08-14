@@ -8,4 +8,5 @@ RUN mkdir -p /usr/src/gaze
 COPY temp/pkg.zip /usr/src/gaze
 WORKDIR /usr/src/gaze
 RUN unzip pkg.zip
+EXPOSE 80
 CMD [ "python3", "app.py" ]
