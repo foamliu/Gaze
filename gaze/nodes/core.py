@@ -34,7 +34,7 @@ class FileSink(Sink):
     def __init__(self, **kwargs):
         super(FileSink, self).__init__(**kwargs)
         fourcc = cv.VideoWriter_fourcc(*'MPEG')
-        self.out = cv.VideoWriter('/temp/output.avi', fourcc, 25.0, (640, 360))
+        self.out = cv.VideoWriter('output.avi', fourcc, 25.0, (640, 360))
 
     def call(self, inputs, **kwargs):
         self.out.write(inputs)
