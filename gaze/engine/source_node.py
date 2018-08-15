@@ -17,7 +17,7 @@ class SourceNode(Node):
 class VideoTestSource(SourceNode):
     def __init__(self, name=None):
         super(VideoTestSource, self).__init__(name=name)
-        self._cap = cv.VideoCapture('videotestsrc ! appsink sync=false ', cv.CAP_GSTREAMER)
+        self._cap = cv.VideoCapture('videotestsrc pattern=snow ! video/x-raw,width=1280,height=720 ! appsink sync=false ', cv.CAP_GSTREAMER)
 
     def call(self, inputs=None, **kwargs):
         return self._cap.read()
