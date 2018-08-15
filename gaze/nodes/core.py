@@ -37,6 +37,5 @@ class FileSink(Sink):
         self.out = cv.VideoWriter('/temp/output.avi', fourcc, 25.0, (640, 360))
 
     def call(self, inputs, **kwargs):
-        cv.imshow('AutoVideoSink', inputs)
         self.out.write(inputs)
         return None
