@@ -1,11 +1,15 @@
-FROM ubuntu:16.04
+FROM base/archlinux
 MAINTAINER Peisheng Wang <115681033@qq.com>
-RUN apt-get update -y
-RUN apt-get -y install python3-pip
-RUN pip3 install gaze
-RUN apt-get install unzip
+RUN pacman -Syu --noconfirm
+RUN pacman -S opencv --noconfirm
+RUN pacman -S gstreamer --noconfirm
+RUN pacman -S python-numpy --noconfirm
+RUN pacman -S python-pip --noconfirm
+RUN pip install gaze
+RUN pacman -S unzip --noconfirm
 RUN mkdir -p /usr/src/gaze
 COPY temp/pkg.zip /usr/src/gaze
 WORKDIR /usr/src/gaze
 RUN unzip pkg.zip
-CMD [ "python3", "app.py" ]
+EXPOSE 80
+CMD [ "python", "app.py" ]
