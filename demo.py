@@ -1,10 +1,10 @@
-from gaze.nodes import NetworkSource, VideoTestSource
+from gaze.nodes import NetworkSource, VideoTestSource, FileSource
 from gaze.nodes.core import EdgeDetection, AutoVideoSink, FileSink
 from gaze.pipes import Graph
 
 
 if __name__ == '__main__':
-    x = VideoTestSource()
+    x = FileSource('movie.mp4')
     x = EdgeDetection()(x)
     x = AutoVideoSink()(x)
 
