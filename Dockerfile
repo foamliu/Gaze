@@ -1,7 +1,7 @@
 FROM base/archlinux
 MAINTAINER Peisheng Wang <115681033@qq.com>
 RUN pacman -Syu --noconfirm
-RUN pacman -S opencv hdf5 python-numpy --noconfirm
+RUN pacman -S opencv gtk3 hdf5 python-numpy --noconfirm
 RUN pacman -S gstreamer gst-plugins-good gst-plugins-bad gst-plugins-ugly gst-libav gst-python --noconfirm
 RUN pacman -S python-pip --noconfirm
 RUN pip install gaze
