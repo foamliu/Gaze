@@ -10,7 +10,8 @@ class EdgeDetection(Node):
     def call(self, inputs, **kwargs):
         gray = cv.cvtColor(inputs, cv.COLOR_BGR2GRAY)
         laplacian = cv.Laplacian(gray, cv.CV_8U)
-        return laplacian
+        output = cv.cvtColor(laplacian, cv.COLOR_GRAY2RGB)
+        return output
 
 
 class Sink(Node):
