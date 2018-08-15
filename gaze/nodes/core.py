@@ -10,7 +10,8 @@ class EdgeDetection(Node):
     def call(self, inputs, **kwargs):
         gray = cv.cvtColor(inputs, cv.COLOR_BGR2GRAY)
         laplacian = cv.Laplacian(gray, cv.CV_8U)
-        return laplacian
+        output = cv.cvtColor(laplacian, cv.COLOR_GRAY2RGB)
+        return output
 
 
 class Sink(Node):
@@ -34,9 +35,8 @@ class FileSink(Sink):
     def __init__(self, **kwargs):
         super(FileSink, self).__init__(**kwargs)
         fourcc = cv.VideoWriter_fourcc(*'MPEG')
-        self.out = cv.VideoWriter('/temp/output.avi', fourcc, 25.0, (640, 360))
+        self.out = cv.VideoWriter(filename='output.avi', fourcc=fourcc, fps=25.0, frameSize=(1280, 720), isColor=True)
 
     def call(self, inputs, **kwargs):
-        cv.imshow('AutoVideoSink', inputs)
         self.out.write(inputs)
         return None
