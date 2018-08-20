@@ -11,5 +11,5 @@ COPY temp/pkg.zip /usr/src/gaze
 WORKDIR /usr/src/gaze
 RUN unzip pkg.zip
 # VOLUME /usr/src/gaze
-EXPOSE 80
+EXPOSE 5000
 CMD [ "python", "app.py" ]
