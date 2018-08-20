@@ -5,7 +5,7 @@ from gaze.pipes import Graph
 
 if __name__ == '__main__':
     x = NetworkSource()
-    x = EdgeDetection()(x)
+    # x = EdgeDetection()(x)
     x = AutoVideoSink()(x)
 
     graph = Graph(x)
