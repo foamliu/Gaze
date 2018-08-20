@@ -1,6 +1,6 @@
 Metadata-Version: 1.1
 Name: gaze
-Version: 0.0.1
+Version: 0.0.3
 Summary: Gaze integrates the computing power of private clouds with data from IoT devices such as cameras, providing scalable video analytics capacity on the Edge
 Home-page: https://github.com/foamliu/Gaze
 Author: Peisheng Wang
