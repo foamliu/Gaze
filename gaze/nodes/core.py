@@ -38,6 +38,5 @@ class FileSink(Sink):
         self.out = cv.VideoWriter(filename='output.avi', fourcc=fourcc, fps=25.0, frameSize=(960, 720), isColor=True)
 
     def call(self, inputs, **kwargs):
-        print('output frame with shape: ' + str(inputs.shape))
         self.out.write(inputs)
         return None
