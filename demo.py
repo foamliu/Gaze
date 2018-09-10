@@ -1,5 +1,6 @@
-from gaze.nodes import NetworkSource, VideoTestSource, FileSource
-from gaze.nodes.core import EdgeDetection, AutoVideoSink, FaceRecognition
+
+from gaze.nodes import NetworkSource, VideoTestSource, NetworkSource
+from gaze.nodes.core import EdgeDetection, FaceRecognition, AutoVideoSink, FileSink
 from gaze.pipes import Graph
 
 
