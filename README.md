@@ -49,4 +49,15 @@ $ kubectl apply -f gaze.yaml
 Then get the external IP by kubectl get svc and send video stream to that IP.
 You can use kubectl exec -it <pod-name>  --/bin/bash to access the pod to see if it works.
 
+# Portal 
+
+We can easily deploy a gaze project by uploading the source code and clicking “deploy” button.
+
+![image](https://github.com/foamliu/Gaze/raw/master/images/upload.PNG)
+
+It could automatically package the gaze project to docker image and push the image to the docker hub.
+Finally, it could generate a yaml file and deploy it on azure stack.
+
+![image](https://github.com/foamliu/Gaze/raw/master/images/homepage.PNG)
+
 
