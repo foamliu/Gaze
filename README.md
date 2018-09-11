@@ -26,7 +26,7 @@ $ python demo.py
 ## Docker container
 In Linux VM:
 ```bash
-$ git clone https://github.com/WANGPeisheng1997/Gaze.git
+$ git clone https://github.com/foamliu/Gaze.git
 $ sudo docker build -t="gaze0.0.1" . 
 $ sudo docker run --name=gaze0.0.1 -p 5000:5000/udp -it -v <mount-dir>:/usr/src/gaze/output gaze0.0.1 /bin/bash
 $ python app.py
