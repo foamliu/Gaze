@@ -1,26 +1,51 @@
-# Gaze 智能视频云服务
+# Gaze intelligent video cloud service
+The Gaze Real-Time Video Analytics Service Platform integrates the computing power of private clouds with data from IoT devices such as cameras, providing scalable, scalable video analytics on the Edge.
 
-Gaze 实时视频分析服务平台整合私有云的计算能力和物联网设备(如摄像头)的数据，在端(Edge)提供可扩展、可伸缩的视频分析能力。
+# Overview
+Today's society is full of cameras. According to statistics, 85% of the data on the Internet is video data, and it is still growing rapidly. When people talk about big data and IoT devices, big data mainly refers to video data, and IoT devices mainly refer to cameras. But has massive data been fully exploited and utilized? The answer is limited by video analysis capabilities, which are like dark matter and far from being used effectively.
 
-# 简介
-当今社会到处都是摄像头。据统计，互联网上85%的数据量是视频数据，且仍在飞速增长。当人们再谈论大数据和物联网设备的时候，大数据主要指视频数据，物联网设备主要指摄像头。但海量数据是否已经得到充分的挖掘和利用呢? 答案是受限于视频分析能力，这些大数据就像是暗物质，远未得到有效利用。
+According to a low-definition camera, the amount of video accumulated per day is 1.5G, and in HD, it is 15G. If a mall has a hundred cameras installed, the amount of data is T-level. If you pass this data to the public cloud, it is an attack, not a use. Therefore, video analysis on the public cloud will not be worth the candle, but it is a perfect combination with the private cloud.
 
-按一个低清摄像头每天视频积累数据量是1.5G，高清的话是15G。如果一个商场安装了一百个摄像头，这些数据量是T级别的。如果把这些数据传到公有云，这是一种攻击，而非使用。因此在公有云上进行视频分析将是得不偿失的，但和私有云却是一个完美的结合。
+With this in mind, we propose Gaze to integrate the computing power of private clouds with data from IoT devices such as cameras. Provides scalable, scalable video analysis capabilities at the Edge. For developers, if there is a need for video analysis, we can convert some video streams into event streams based on our pre-built "building blocks" by simple statements, and pass them through event hub and Kafka. Downstream.
 
-鉴于此，我们提出 Gaze 来整合私有云的计算能力和物联网设备(如摄像头)的数据。在端(Edge)提供可扩展、可伸缩的视频分析能力。对于开发者来说，如果有视频分析的需求，可以通过简单几行语句，基于我们事先搭好的“积木”，将一些视频流转化成事件流，通过event hub、卡夫卡（Kafka）传给下游。
-
-# 系统架构
+# Architecture
 
 ![image](https://github.com/foamliu/Gaze/raw/master/images/architecture.svg?sanitize=true)
 
-# 数据流图
+# Dataflow
 
 ![image](https://github.com/foamliu/Gaze/raw/master/images/dataflow.svg?sanitize=true)
 
-# 快速上手
+# Quick Startup
 
+## Local env
 ```bash
 $ python demo.py
 ```
+
+## K8s cluster
+In Linux VM:
+```bash
+$ git clone https://github.com/WANGPeisheng1997/Gaze.git
+$ sudo docker build -t="gaze0.0.1" . 
+$ sudo docker run --name=gaze0.0.1 -p 5000:5000/udp -it -v <mount-dir>:/usr/src/gaze/output gaze0.0.1 /bin/bash
+$ python app.py
+```
+
+You can send video stream to the VM via UDP at port 5000 and then you can see output.avi in mount-dir.
+
+In master node:
+```bash
+$ kubectl run gazepod --image=wenhuorongbing/gaze0.0.6 --port=5000
+$ kubectl expose deployment gazepod --port=5000 --target-port=5000 --protocol=UDP --type=LoadBalancer
+```
+
+Or you can use the yaml file in the source code:
+```bash
+$ kubectl apply -f gaze.yaml
+```
+
+Then get the external IP by kubectl get svc and send video stream to that IP.
+You can use kubectl exec -it <pod-name>  --/bin/bash to access the pod to see if it works.
 
 
