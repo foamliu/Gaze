@@ -18,12 +18,12 @@ With this in mind, we propose Gaze to integrate the computing power of private c
 
 # Quick Startup
 
-## Local env
+## Dev environment
 ```bash
 $ python demo.py
 ```
 
-## K8s cluster
+## Docker container
 In Linux VM:
 ```bash
 $ git clone https://github.com/WANGPeisheng1997/Gaze.git
@@ -34,6 +34,7 @@ $ python app.py
 
 You can send video stream to the VM via UDP at port 5000 and then you can see output.avi in mount-dir.
 
+## K8s cluster
 In master node:
 ```bash
 $ kubectl run gazepod --image=wenhuorongbing/gaze0.0.6 --port=5000
