@@ -55,8 +55,8 @@ We can easily deploy a gaze project by uploading the source code and clicking â€
 
 ![image](https://github.com/foamliu/Gaze/raw/master/images/upload.PNG)
 
-It could automatically package the gaze project to docker image and push the image to the docker hub.
-Finally, it could generate a yaml file and deploy it on azure stack.
+It automatically packs the gaze project to docker image and pushes the image to the docker hub.
+Finally, it generates a yaml file and deploy it on azure stack.
 
 ![image](https://github.com/foamliu/Gaze/raw/master/images/homepage.PNG)
 
