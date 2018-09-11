@@ -57,5 +57,6 @@ class FileSink(Sink):
         self.out = cv.VideoWriter(filename='output.avi', fourcc=fourcc, fps=20.0, frameSize=(960, 720), isColor=True)
 
     def call(self, inputs, **kwargs):
-        self.out.write(inputs)
+        if inputs is not None:
+            self.out.write(inputs)
         return None

@@ -49,6 +49,9 @@ def draw_boxes(image, faceRectangle, name):
 
 
 def process_one_frame(image):
+    if image is None:
+        return image
+
     detect_url = 'http://localhost:5000/face/v1.0/detect?returnFaceId=true&returnFaceLandmarks=true'
 
     image_file = BytesIO()
