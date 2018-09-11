@@ -7,7 +7,7 @@ from gaze.pipes import Graph
 if __name__ == '__main__':
     x = NetworkSource()
     x = FaceRecognition()(x)
-    x = FileSink()(x)
+    x = AutoVideoSink()(x)
 
     graph = Graph(x)
     graph.run()
