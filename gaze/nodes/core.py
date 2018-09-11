@@ -14,6 +14,15 @@ class EdgeDetection(Node):
         return output
 
 
+class FaceDetection(Node):
+    def __init__(self, **kwargs):
+        super(FaceDetection, self).__init__(**kwargs)
+
+    def call(self, inputs, **kwargs):
+        from ..nodes.face_detection_utils import process_one_frame
+        return process_one_frame(inputs)
+
+
 class FaceRecognition(Node):
     def __init__(self, **kwargs):
         super(FaceRecognition, self).__init__(**kwargs)
@@ -36,7 +45,8 @@ class AutoVideoSink(Sink):
         super(AutoVideoSink, self).__init__(**kwargs)
 
     def call(self, inputs, **kwargs):
-        cv.imshow('AutoVideoSink', inputs)
+        if inputs is not None:
+            cv.imshow('AutoVideoSink', inputs)
         return None
 
 
