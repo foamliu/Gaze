@@ -16,7 +16,7 @@ With this in mind, we propose Gaze to integrate the computing power of private c
 
 ![image](https://github.com/foamliu/Gaze/raw/master/images/dataflow.svg?sanitize=true)
 
-# Quick Startup
+# Quick start
 
 ## Dev environment
 ```bash
