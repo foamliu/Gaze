@@ -17,11 +17,13 @@ class Graph(Sequential):
 
         while True:
             ret, frame = source.call()
-            if ret:
+            if ret == True:
                 for node in self._nodes[1:]:
                     frame = node.call(frame)
 
                 ch = cv.waitKey(1)
                 if ch == 27:
                     break
+            else:
+                break
 

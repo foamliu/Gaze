@@ -4,3 +4,7 @@ gaze/__pycache__/
 gaze/engine/__pycache__/
 gaze/nodes/__pycache__/
 __pycache__/
+.vs/
+*.mp4
+*.avi
+.vscode/
