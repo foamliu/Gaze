@@ -29,7 +29,7 @@ class AutoVideoSink(SinkNode):
 class FileSink(SinkNode):
     def __init__(self, **kwargs):
         super(FileSink, self).__init__(**kwargs)
-        fourcc = cv.VideoWriter_fourcc(*'MJPG')
+        fourcc = cv.VideoWriter_fourcc(*'MPEG')
         self.out = cv.VideoWriter(filename='output.avi', fourcc=fourcc, fps=20.0, frameSize=(960, 720), isColor=True)
 
         
