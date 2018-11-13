@@ -20,8 +20,6 @@ class AutoVideoSink(SinkNode):
         if inputs is not None:
             encode_param = [int(cv.IMWRITE_JPEG_QUALITY), 50]
             result, buffer = cv.imencode('.jpg', inputs, encode_param)
-            print(len(buffer))
-
             cv.imshow('AutoVideoSink', inputs)
         return None
 

@@ -57,6 +57,7 @@ class UdpSource(SourceNode):
     
     def call(self, inputs=None, **kwargs):
         data, server = self.sock.recvfrom(65507)
+        print(server, len(data))
         array = np.frombuffer(data, dtype=np.dtype('uint8'))
         img = cv.imdecode(array, 1)
         return True, img
