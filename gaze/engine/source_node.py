@@ -20,7 +20,7 @@ class VideoTestSource(SourceNode):
     def __init__(self, name=None):
         super(VideoTestSource, self).__init__(name=name)
         self._cap = cv.VideoCapture(
-            'videotestsrc pattern=snow ! video/x-raw,width=1280,height=720 ! appsink sync=false ', 
+            'videotestsrc pattern=snow ! video/x-raw,width=320,height=240 ! appsink sync=false ', 
             cv.CAP_GSTREAMER)
 
     def call(self, inputs=None, **kwargs):
@@ -57,7 +57,6 @@ class UdpSource(SourceNode):
     
     def call(self, inputs=None, **kwargs):
         data, server = self.sock.recvfrom(65507)
-        print(server, len(data))
         array = np.frombuffer(data, dtype=np.dtype('uint8'))
         img = cv.imdecode(array, 1)
         return True, img
