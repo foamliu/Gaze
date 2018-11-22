@@ -1,33 +1,14 @@
-import numpy as np
-import cv2
+from gaze.pipes import Graph
+from gaze.nodes import VideoTestSource, FileSource, DefaultDeviceSource, NetworkSource, UdpSource
+from gaze.nodes import FileSink, UdpSink, AutoVideoSink
 
-videoFilePath = "movie.mp4"
-#cap =cv2.VideoCapture(videoFilePath) 
-cap = cv2.VideoCapture(
-    'filesrc location=movie.mp4 ! decodebin ! videoconvert ! queue ! appsink sync=false ',
-    cv2.CAP_GSTREAMER)
+#x = DefaultDeviceSource()
+#x = UdpSink( port=5001)(x)
+#x = UdpSource(ip="0.0.0.0",port=5001)(x)
+#x = AutoVideoSink()(x)
 
-frame_width = int( cap.get(cv2.CAP_PROP_FRAME_WIDTH))
-frame_height =int( cap.get( cv2.CAP_PROP_FRAME_HEIGHT))
-fourcc = cv2.VideoWriter_fourcc(*'MJPG')
-out = cv2.VideoWriter('output.avi', fourcc, 20, (frame_width, frame_height)) 
+x = VideoTestSource()
+x = FileSink()(x)
 
-
-while(cap.isOpened()):
-    ret, frame = cap.read()
-    if ret==True:
-        #frame = cv2.flip(frame,0)
-
-        # write the flipped frame
-        out.write(frame)
-        #print(np.shape(frame))
-        cv2.imshow('frame',frame)
-        if cv2.waitKey(1) & 0xFF == ord('q'):
-            break
-    else:
-        break
-
-# Release everything if job is finished
-cap.release()
-out.release()
-cv2.destroyAllWindows()
+graph = Graph(x)
+graph.run()
